@@ -11,7 +11,7 @@ jobs:
           ghc-version: ${{ matrix.ghc }}
       - run: ghc-pkg list
       - run: cabal sdist --output-dir artifact
-      - run: cabal configure --enable-tests --flags=pedantic --jobs
+      - run: cabal configure --enable-benchmarks --enable-tests --flags=pedantic --jobs
       - run: cat cabal.project.local
       - run: cp cabal.project.local artifact
       - run: cabal freeze
@@ -32,6 +32,7 @@ jobs:
           name: heptapod-${{ github.sha }}-${{ matrix.os }}-${{ matrix.ghc }}
           path: artifact.tar
       - run: cabal run -- heptapod-test-suite
+      - run: cabal run -- heptapod-benchmark +RTS -t
     strategy:
       matrix:
         include:
