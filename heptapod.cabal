@@ -10,7 +10,7 @@ license: MIT
 maintainer: Taylor Fausak
 name: heptapod
 synopsis: Generate UUIDv7 values.
-version: 0.2024.8.16
+version: 1.0.0.0
 
 source-repository head
   location: https://github.com/tfausak/heptapod
