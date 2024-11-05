@@ -4,6 +4,7 @@
 -- <https://datatracker.ietf.org/doc/html/rfc9562#name-uuid-version-7>
 module Heptapod where
 
+import qualified Control.Monad.IO.Class as IO
 import qualified Data.Bits as Bits
 import qualified Data.ByteString as ByteString
 import qualified Data.Int as Int
@@ -14,8 +15,8 @@ import qualified System.Entropy as Entropy
 
 -- | Generates a UUIDv7 using the current time (from 'Time.getSystemTime') and
 -- random data (from 'Entropy.getEntropy').
-generate :: IO UUID.UUID
-generate = do
+generate :: IO.MonadIO m => m UUID.UUID
+generate = IO.liftIO $ do
   t <- Time.getSystemTime
   -- Note that we only need 74 bits (12 + 62) of randomness. That's a little
   -- more than 9 bytes (72 bits), so we have to request 10 bytes (80 bits) of
