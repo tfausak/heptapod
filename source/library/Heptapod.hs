@@ -15,7 +15,7 @@ import qualified System.Entropy as Entropy
 
 -- | Generates a UUIDv7 using the current time (from 'Time.getSystemTime') and
 -- random data (from 'Entropy.getEntropy').
-generate :: IO.MonadIO m => m UUID.UUID
+generate :: (IO.MonadIO m) => m UUID.UUID
 generate = IO.liftIO $ do
   t <- Time.getSystemTime
   -- Note that we only need 74 bits (12 + 62) of randomness. That's a little
