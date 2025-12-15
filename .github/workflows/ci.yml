@@ -82,7 +82,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: heptapod-${{ github.sha }}-ubuntu-22.04-9.10
       - run: tar --extract --file artifact.tar --verbose
